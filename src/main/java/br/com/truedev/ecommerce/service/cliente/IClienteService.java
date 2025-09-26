@@ -1,4 +1,4 @@
-package br.com.truedev.ecommerce.service;
+package br.com.truedev.ecommerce.service.cliente;
 
 import java.util.List;
 

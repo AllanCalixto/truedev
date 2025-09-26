@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.truedev.ecommerce.model.Cliente;
-import br.com.truedev.ecommerce.service.IClienteService;
+import br.com.truedev.ecommerce.service.cliente.IClienteService;
 
 @RestController
 public class ClienteController {
