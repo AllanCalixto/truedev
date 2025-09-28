@@ -34,6 +34,7 @@ public class Variante {
 	@JsonIgnoreProperties("variantes")
 	private Produto produto;
 
+	
 	public Integer getId() {
 		return id;
 	}
