@@ -3,6 +3,9 @@ package br.com.truedev.ecommerce.service.produto;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import br.com.truedev.ecommerce.dao.ProdutoDAO;
@@ -14,6 +17,8 @@ public class ProdutoServiceImpl implements IProdutoService{
 	
 	@Autowired
 	private ProdutoDAO dao;
+	
+	private static final int PAGE_SIZE=5;
 
 	@Override
 	public Produto cadastrarNovo(Produto novo) {
@@ -25,10 +30,6 @@ public class ProdutoServiceImpl implements IProdutoService{
 		return dao.save(produto);
 	}
 
-	@Override
-	public List<Produto> recuperarTodos() {
-		return dao.findByOrderByNomeAsc();
-	}
 
 	@Override
 	public List<Produto> recuperarPorPalavraChave(String palavraChave) {
@@ -44,5 +45,17 @@ public class ProdutoServiceImpl implements IProdutoService{
 	public List<Produto> buscarPorCategoria(Categoria categoria) {
 		return dao.findByCategoriasContaining(categoria);
 	}
+
+	@Override
+	public Page<Produto> recuperarTodos(int numPagina) {
+	    Pageable pageable = PageRequest.of(numPagina-1, PAGE_SIZE);
+	    return recuperarTodos(pageable); // delega corretamente
+	}
+
+	@Override
+	public Page<Produto> recuperarTodos(Pageable pageable) {
+	    return dao.findByOrderByNomeAsc(pageable);
+	}
+
 
 }
