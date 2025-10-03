@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.truedev.ecommerce.model.Usuario;
+import br.com.truedev.ecommerce.security.ECToken;
 import br.com.truedev.ecommerce.service.usuario.IUsuarioService;
 
 @RestController
@@ -44,5 +45,14 @@ public class UsuarioController {
 			System.out.println("LOG: Não foi possivel atualizar o os dados do usuario! "+ex.getMessage());
 		}
 		return ResponseEntity.badRequest().build();
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<ECToken> realizarLogin(@RequestBody Usuario usuario){
+		ECToken token = service.fazerLogin(usuario.getLogin(), usuario.getSenha());
+		if(token != null) {
+			return ResponseEntity.ok(token);
+		}
+		return ResponseEntity.status(403).build();
 	}
 }

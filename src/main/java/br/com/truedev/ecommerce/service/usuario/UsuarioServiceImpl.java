@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import br.com.truedev.ecommerce.dao.UsuarioDAO;
 import br.com.truedev.ecommerce.model.Usuario;
 import br.com.truedev.ecommerce.security.ECToken;
+import br.com.truedev.ecommerce.security.ECTokenUtil;
 
 @Component
 public class UsuarioServiceImpl implements IUsuarioService{
@@ -31,7 +32,15 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Override
 	public ECToken fazerLogin(String login, String senha) {
-		// TODO Auto-generated method stub
+
+		Usuario u = dao.findByLogin(login);
+		
+		if(u != null) {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			if(encoder.matches(senha, u.getSenha())) {
+				return ECTokenUtil.generateToken(u);
+			}
+		}
 		return null;
 	}
 
