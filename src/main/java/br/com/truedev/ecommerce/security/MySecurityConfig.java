@@ -23,7 +23,10 @@ public class MySecurityConfig {
 	            .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
 	            .requestMatchers(HttpMethod.POST, "/login").permitAll()
 	            .requestMatchers(HttpMethod.GET, "/pedidos").permitAll()
-	            .requestMatchers(HttpMethod.POST, "/pedidos").permitAll()
+	            .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
+	            .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+	            .requestMatchers(HttpMethod.POST, "/upload").permitAll()
+	            
 	            .anyRequest().authenticated()
 	            
 	            

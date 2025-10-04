@@ -2,6 +2,7 @@ package br.com.truedev.ecommerce.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import br.com.truedev.ecommerce.security.ECToken;
 import br.com.truedev.ecommerce.service.usuario.IUsuarioService;
 
 @RestController
+@CrossOrigin("*")
 public class UsuarioController {
 	
 	@Autowired
