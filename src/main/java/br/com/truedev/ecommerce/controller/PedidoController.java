@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.truedev.ecommerce.dto.FaturamentoMensal;
 import br.com.truedev.ecommerce.model.Pedido;
 import br.com.truedev.ecommerce.service.pedido.IPedidoService;
 
@@ -37,13 +38,18 @@ public class PedidoController {
 		return ResponseEntity.ok(service.recuperarTodos());
 	}
 	
-	@GetMapping("pedidos/{id}")
+	@GetMapping("/pedidos/{id}")
 	public ResponseEntity<Pedido> recuperarPorId(@PathVariable Integer id){
 		Pedido res = service.recuperarPeloNumero(id);
 		if(res != null){
 			return ResponseEntity.ok(res);
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping("pedidos/faturamento/{ano}")
+	public ResponseEntity<List<FaturamentoMensal>> recuperarFaturamento(@PathVariable Integer ano){
+		return ResponseEntity.ok(service.recuperarFaturamento(ano));
 	}
 
 }

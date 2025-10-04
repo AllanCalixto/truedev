@@ -31,7 +31,7 @@ public class ECTokenUtil {
 		Key secretKey = Keys.hmacShaKeyFor(TOKEN_KEY.getBytes());
 		String jwt = Jwts.builder().setSubject(usuario.getLogin())
 					.setIssuer(EMISSOR)
-					.setExpiration(new Date(System.currentTimeMillis() + UMA_SEMANA))
+					.setExpiration(new Date(System.currentTimeMillis() + UM_DIA))
 					.signWith(secretKey, io.jsonwebtoken.SignatureAlgorithm.HS256).compact();
 		ECToken token = new ECToken();
 		token.setToken(TOKEN_HEADER + jwt);

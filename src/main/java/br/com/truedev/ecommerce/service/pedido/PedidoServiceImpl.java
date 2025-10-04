@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.truedev.ecommerce.dao.PedidoDAO;
+import br.com.truedev.ecommerce.dto.FaturamentoMensal;
 import br.com.truedev.ecommerce.model.ItemPedido;
 import br.com.truedev.ecommerce.model.Pedido;
 
@@ -53,6 +54,12 @@ public class PedidoServiceImpl implements IPedidoService{
 	@Override
 	public List<Pedido> recuperarPorStatus(Integer status) {
 		return dao.findAllByStatus(status);
+	}
+
+	@Override
+	public List<FaturamentoMensal> recuperarFaturamento(Integer ano) {
+		// TODO Auto-generated method stub
+		return dao.recuperarFaturamento(ano);
 	}
 
 }
