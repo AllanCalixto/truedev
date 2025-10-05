@@ -27,6 +27,7 @@ public class MySecurityConfig {
 	            .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
 	            .requestMatchers(HttpMethod.POST, "/upload").permitAll()
 	            
+	            
 	            .anyRequest().authenticated()
 	            
 	            

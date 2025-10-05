@@ -47,7 +47,7 @@ public class PedidoController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	@GetMapping("pedidos/faturamento/{ano}")
+	@GetMapping("/pedidos/faturamento/{ano}")
 	public ResponseEntity<List<FaturamentoMensal>> recuperarFaturamento(@PathVariable Integer ano){
 		return ResponseEntity.ok(service.recuperarFaturamento(ano));
 	}
